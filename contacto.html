@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ZapaClub — Contacto</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-wrap">
+      <h1 class="logo">ZapaClub</h1>
+      <nav class="nav">
+        <a class="nav__link" href="index.html">Inicio</a>
+        <a class="nav__link" href="articulo.html">Artículo</a>
+        <a class="nav__link nav__link--active" href="contacto.html">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h2>Contacto</h2>
+    <form id="contactForm" novalidate class="form">
+      <div class="form__row">
+        <label for="nombre">Nombre</label>
+        <input id="nombre" name="nombre" type="text" maxlength="50" required placeholder="Tu nombre" />
+        <small class="error" data-error-for="nombre"></small>
+      </div>
+
+      <div class="form__row">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" maxlength="80" required placeholder="tucorreo@ejemplo.com" />
+        <small class="error" data-error-for="email"></small>
+      </div>
+
+      <div class="form__row">
+        <label for="telefono">Teléfono</label>
+        <input id="telefono" name="telefono" type="tel" maxlength="20" required placeholder="+54 9 11 1234 5678" />
+        <small class="error" data-error-for="telefono"></small>
+      </div>
+
+      <div class="form__row">
+        <label for="mensaje">Mensaje</label>
+        <textarea id="mensaje" name="mensaje" rows="5" maxlength="500" placeholder="¿Qué modelo buscás? ¿Talle? ¿Uso?"></textarea>
+        <small class="error" data-error-for="mensaje"></small>
+      </div>
+
+      <button class="btn" type="submit">Enviar</button>
+    </form>
+
+    <div id="resultado" class="resultado" aria-live="polite"></div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">Hecho por Nehuen — 2025</div>
+  </footer>
+</body>
+</html>

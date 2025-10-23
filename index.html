@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ZapaClub — Inicio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <!-- Decoracion de fondo -->
+  <div class="bg-waves" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="container header-wrap">
+      <h1 class="logo">
+        <span class="logo__dot"></span>Zapa<span class="logo__grad">Club</span>
+      </h1>
+
+      <nav class="nav">
+        <a class="nav__link nav__link--active" href="index.html">Inicio</a>
+        <a class="nav__link" href="articulo.html">Artículo</a>
+        <a class="nav__link" href="contacto.html">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Hero -->
+<section class="hero card-glass">
+  <p class="kicker">Nuevo</p>
+  <h1 class="hero__title">Tu <span class="grad">club</span> de zapatillas</h1>
+  <p class="hero__subtitle">
+    Modelos urbanos, running y ediciones limitadas. Deslizá el carrusel para ver lo último.
+  </p>
+
+  <div class="cta">
+    <a href="articulo.html" class="btn">Ver catálogo</a>
+    <a href="articulo.html#destacados" class="btn btn--ghost">Ver destacados</a>
+  </div>
+
+  <!-- Separador fino -->
+  <div class="rule rule--soft" role="presentation"></div>
+
+  <!-- Stats mas separadas y con marcos -->
+  <ul class="stats stats--cards" aria-label="datos destacados">
+    <li class="stat">
+      <span class="stat__value">+120</span>
+      <span class="stat__label">Modelos</span>
+    </li>
+    <li class="stat">
+      <span class="stat__value">48h</span>
+      <span class="stat__label">Entrega</span>
+    </li>
+    <li class="stat">
+      <span class="stat__value">Cambios/Devol.</span>
+      <span class="stat__label">Fácil</span>
+    </li>
+    <li class="stat">
+      <span class="stat__value">4.8★</span>
+      <span class="stat__label">Valoración</span>
+    </li>
+  </ul>
+</section>
+
+    <!-- CAROUSEL -->
+    <section class="carousel" aria-label="galería de imágenes">
+      <button class="carousel__btn" id="prevBtn" aria-label="Anterior">‹</button>
+      <img id="carouselImg" class="carousel__img" alt="Zapatillas destacadas" src="" />
+      <button class="carousel__btn" id="nextBtn" aria-label="Siguiente">›</button>
+    </section>
+
+    <!-- CARDS -->
+    <section id="destacados" class="home-cards">
+      <article class="card card--border">
+        <div class="card__icon" aria-hidden="true">🎟️</div>
+        <h3>Ediciones limitadas</h3>
+        <p>Lanzamientos con stock reducido y detalles premium.</p>
+        <a class="link-ghost" href="articulo.html#limited">Ver más</a>
+      </article>
+
+      <article class="card card--border">
+        <div class="card__icon" aria-hidden="true">🏃‍♂️</div>
+        <h3>Running & Training</h3>
+        <p>Espuma reactiva, tracción y soporte del arco para todo tipo de pisada.</p>
+        <a class="link-ghost" href="articulo.html#running">Ver más</a>
+      </article>
+
+      <article class="card card--border">
+        <div class="card__icon" aria-hidden="true">🧢</div>
+        <h3>Streetwear</h3>
+        <p>Clásicos de todos los días con combinaciones de color actuales.</p>
+        <a class="link-ghost" href="articulo.html#street">Ver más</a>
+      </article>
+    </section>
+
+    <!-- CTA BANNER -->
+    <section class="cta-banner">
+      <div class="cta-banner__text">
+        <h3>Suscribite y enterate antes</h3>
+        <p class="lead">Drops, restocks y promos exclusivas en tu mail.</p>
+      </div>
+      <a class="btn btn--outline" href="contacto.html">Quiero suscribirme</a>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-wrap">
+      <p>Hecho por Nehuen — 2025</p>
+      <ul class="footer-links">
+        <li><a href="contacto.html">Soporte</a></li>
+        <li><a href="articulo.html">Catálogo</a></li>
+        <li><a href="#">Términos</a></li>
+      </ul>
+    </div>
+  </footer>
+</body>
+</html>
