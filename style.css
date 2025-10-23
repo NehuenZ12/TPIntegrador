@@ -197,3 +197,19 @@ html,body{
 @media (prefers-reduced-motion: reduce){
   .btn, .card--lift, .carousel__btn{ transition:none }
 }
+
+/* ==== EFECTO HOVER EN LAS TARJETAS DE GUÍA ==== */
+.guia .card {
+  background: var(--panel);
+  border-radius: 16px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+
+.guia .card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--brand);
+  background: linear-gradient(145deg, rgba(34,197,94,0.15), rgba(6,182,212,0.1));
+}
