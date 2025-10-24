@@ -5,31 +5,40 @@ const nextBtn = document.getElementById('nextBtn');
 
 // Array de imágenes (zapatillas) - 
 const IMAGENES = [
-  'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1200&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1519744792095-2f2205e87b6f?q=80&w=1200&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?q=80&w=1200&auto=format&fit=crop'
+  'img/zapas1.jpg',
+  'img/zapas2.jpg',
+  'img/zapas3.jpg',
+  'img/zapas4.jpg',
+  'img/zapas5.jpg'
 ];
 
 let pos = 0;
+
+// Mostrar la imagen actual
 function renderImg(){
-  if(!imgEl) return;
+  if (!imgEl || IMAGENES.length === 0) return;
   imgEl.src = IMAGENES[pos];
+  imgEl.alt = `Imagen ${pos + 1} del carrusel`;
 }
+
+// Pasar a la siguiente imagen
 function next(){
   pos = (pos + 1) % IMAGENES.length; // circular
   renderImg();
 }
+
+// Pasar a la imagen anterior
 function prev(){
-  pos = (pos - 1 + IMAGENES.length) % IMAGENES.length; // circular hacia atrás
+  pos = (pos - 1 + IMAGENES.length) % IMAGENES.length; // circular atrás
   renderImg();
 }
+
+// Inicializar carrusel
 if (imgEl){
   renderImg();
-  nextBtn?.addEventListener('click', next);
-  prevBtn?.addEventListener('click', prev);
-  // rotación automática cada 5s
-  setInterval(next, 5000);
+  nextBtn && nextBtn.addEventListener('click', next);
+  prevBtn && prevBtn.addEventListener('click', prev);
+  setInterval(next, 5000); // auto-rotación cada 5 segundos
 }
 
 // ===== Validación del formulario (Contacto) =====
