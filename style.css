@@ -151,7 +151,7 @@ html,body{
   border:1px solid var(--border); color:var(--muted); background: rgba(255,255,255,.03);
 }
 
-/* Formularios (para contacto.html) */
+/* Formularios para contacto.html */
 .form{
   margin: 1rem 0 2rem; display:flex; flex-direction:column; gap:1rem;
   background: rgba(255,255,255,.03); border: 1px solid var(--border);
@@ -188,7 +188,7 @@ html,body{
   background: rgba(255,255,255,.04);
 }
 
-/* Artículo (columnas reutilizable) */
+/* Articulo (columnas reutilizable) */
 .lead{ color:var(--muted) }
 .columns{ display:flex; gap:1rem; flex-wrap:wrap; margin:1.2rem 0 2rem }
 .col{
@@ -201,7 +201,7 @@ html,body{
   .btn, .card--lift, .carousel__btn{ transition:none }
 }
 
-/* ==== EFECTO HOVER EN LAS TARJETAS DE GUÍA ==== */
+/* ==== EFECTO HOVER EN LAS TARJETAS DE GUIA ==== */
 .guia .card {
   background: var(--panel);
   border-radius: 16px;
@@ -209,7 +209,6 @@ html,body{
   transition: all 0.3s ease;
   border: 1px solid transparent;
 }
-
 .guia .card:hover {
   transform: translateY(-8px) scale(1.03);
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
