@@ -1,121 +1,157 @@
 // ===== Carrusel (Inicio) =====
-const imgEl = document.getElementById('carouselImg');
-const prevBtn = document.getElementById('prevBtn');
-const nextBtn = document.getElementById('nextBtn');
+var imgEl = document.getElementById('carouselImg');
+var btnPrev = document.getElementById('prevBtn');
+var btnNext = document.getElementById('nextBtn');
 
-// Array de imágenes (zapatillas) - 
-const IMAGENES = [
-  'img/zapas1.jpg',
-  'img/zapas2.jpg',
-  'img/zapas3.jpg',
-  'img/zapas4.jpg',
-  'img/zapas5.jpg'
+// lista de imagenes (zapatillas)
+var imagenes = [
+  "img/zapas1.jpg",
+  "img/zapas2.jpg",
+  "img/zapas3.jpg",
+  "img/zapas4.jpg",
+  "img/zapas5.jpg"
 ];
 
-let pos = 0;
+let indice = 0;
 
-// Mostrar la imagen actual
-function renderImg(){
-  if (!imgEl || IMAGENES.length === 0) return;
-  imgEl.src = IMAGENES[pos];
-  imgEl.alt = `Imagen ${pos + 1} del carrusel`;
+// muestra la imagen actual
+function mostrarImagen() {
+  if (!imgEl || imagenes.length === 0) return; // por si falta algo
+  imgEl.src = imagenes[indice];
+  imgEl.alt = "Foto " + (indice + 1) + " del carrusel";
 }
 
-// Pasar a la siguiente imagen
-function next(){
-  pos = (pos + 1) % IMAGENES.length; // circular
-  renderImg();
+// siguiente
+function siguiente() {
+  indice = indice + 1;
+  if (indice >= imagenes.length) {
+    indice = 0; // vuelve al principio (circular)
+  }
+  mostrarImagen();
 }
 
-// Pasar a la imagen anterior
-function prev(){
-  pos = (pos - 1 + IMAGENES.length) % IMAGENES.length; // circular atrás
-  renderImg();
+// anterior
+function anterior() {
+  indice = indice - 1;
+  if (indice < 0) {
+    indice = imagenes.length - 1; // va a la ultima (circular)
+  }
+  mostrarImagen();
 }
 
-// Inicializar carrusel
-if (imgEl){
-  renderImg();
-  nextBtn && nextBtn.addEventListener('click', next);
-  prevBtn && prevBtn.addEventListener('click', prev);
-  setInterval(next, 5000); // auto-rotación cada 5 segundos
+// inicio del carrusel
+if (imgEl) {
+  mostrarImagen();
+  if (btnNext) {
+    btnNext.addEventListener('click', function () {
+      siguiente();
+    });
+  }
+  if (btnPrev) {
+    btnPrev.addEventListener('click', function () {
+      anterior();
+    });
+  }
+  // cambio automatico cada 5 segundos
+  setInterval(function () {
+    siguiente();
+  }, 5000);
 }
 
-// ===== Validación del formulario (Contacto) =====
-const form = document.getElementById('contactForm');
-const resultado = document.getElementById('resultado');
+// ===== Validacion del formulario (Contacto) =====
+var form = document.getElementById('contactForm');
+var resultado = document.getElementById('resultado');
 
-function setError(id, msg){
-  const small = document.querySelector(`[data-error-for="${id}"]`);
-  if (small){ small.textContent = msg || ''; }
+// pone o borra el mensaje de error chiquito
+function ponerError(idCampo, mensaje) {
+  var elemError = document.querySelector('[data-error-for="' + idCampo + '"]');
+  if (elemError) {
+    // si mensaje viene vacío, borro el texto
+    elemError.textContent = mensaje ? mensaje : '';
+  }
 }
 
-function validarEmail(valor){
-  // regex suficiente para TP
-  const re = /^[\w.-]+@[\w.-]+\.[A-Za-z]{2,}$/;
-  return re.test(valor);
+// email mas o menos estandar (para el TP esta bien)
+function esEmailValido(texto) {
+  var re = /^[\w.-]+@[\w.-]+\.[A-Za-z]{2,}$/;
+  return re.test(texto);
 }
 
-function validarTelefono(valor){
-  // Soporta +54, espacios y guiones. Requiere 7 a 15 digitos en total.
-  const soloDigitos = valor.replace(/[^\d]/g, '');
+// telefono: permito +54, espacios y guiones, entre 7 y 15 digitos reales
+function esTelefonoValido(texto) {
+  var soloDigitos = texto.replace(/[^\d]/g, '');
   return soloDigitos.length >= 7 && soloDigitos.length <= 15;
 }
 
-form?.addEventListener('submit', (e) => {
-  e.preventDefault();
-  // limpiar errores
-  ['nombre','email','telefono','mensaje'].forEach(id => setError(id,''));
+if (form) {
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
 
-  const nombre = document.getElementById('nombre')?.value.trim() ?? '';
-  const email = document.getElementById('email')?.value.trim() ?? '';
-  const telefono = document.getElementById('telefono')?.value.trim() ?? '';
-  const mensaje = document.getElementById('mensaje')?.value.trim() ?? '';
+    // limpio errores antes de validar
+    ponerError('nombre', '');
+    ponerError('email', '');
+    ponerError('telefono', '');
+    ponerError('mensaje', '');
 
-  let ok = true;
+    // tomo valores (si no hay, dejo cadena vacia)
+    var nombre = (document.getElementById('nombre') && document.getElementById('nombre').value) ? document.getElementById('nombre').value.trim() : '';
+    var email = (document.getElementById('email') && document.getElementById('email').value) ? document.getElementById('email').value.trim() : '';
+    var telefono = (document.getElementById('telefono') && document.getElementById('telefono').value) ? document.getElementById('telefono').value.trim() : '';
+    var mensaje = (document.getElementById('mensaje') && document.getElementById('mensaje').value) ? document.getElementById('mensaje').value.trim() : '';
 
-  if(!nombre){
-    setError('nombre','El nombre es obligatorio');
-    ok = false;
-  } else if (nombre.length > 50){
-    setError('nombre','Máximo 50 caracteres');
-    ok = false;
-  }
+    var todoOk = true;
 
-  if(!email){
-    setError('email','El email es obligatorio');
-    ok = false;
-  } else if (!validarEmail(email)){
-    setError('email','Formato de email inválido');
-    ok = false;
-  }
+    // nombre
+    if (nombre === '') {
+      ponerError('nombre', 'El nombre es obligatorio');
+      todoOk = false;
+    } else if (nombre.length > 50) {
+      ponerError('nombre', 'Máximo 50 caracteres');
+      todoOk = false;
+    }
 
-  if(!telefono){
-    setError('telefono','El teléfono es obligatorio');
-    ok = false;
-  } else if (!validarTelefono(telefono)){
-    setError('telefono','Entre 7 y 15 dígitos. Podés usar +54, espacios o guiones.');
-    ok = false;
-  }
+    // email
+    if (email === '') {
+      ponerError('email', 'El email es obligatorio');
+      todoOk = false;
+    } else if (!esEmailValido(email)) {
+      ponerError('email', 'Formato de email invalido');
+      todoOk = false;
+    }
 
-  if(mensaje.length > 500){
-    setError('mensaje','Máximo 500 caracteres');
-    ok = false;
-  }
+    // telefono
+    if (telefono === '') {
+      ponerError('telefono', 'El telefono es obligatorio');
+      todoOk = false;
+    } else if (!esTelefonoValido(telefono)) {
+      ponerError('telefono', 'Entre 7 y 15 digitos. Podés usar +54, espacios o guiones.');
+      todoOk = false;
+    }
 
-  if(!ok) return;
+    // mensaje (opcional pero con límite)
+    if (mensaje.length > 500) {
+      ponerError('mensaje', 'Maximo 500 caracteres');
+      todoOk = false;
+    }
 
-  // Agregamos HTML mostrando los datos enviados
-  if(resultado){
-    const cont = document.createElement('div');
-    cont.className = 'ok';
-    cont.innerHTML = `<strong>Consulta recibida:</strong><br>
-      Nombre: ${nombre}<br>
-      Email: ${email}<br>
-      Teléfono: ${telefono}<br>
-      Mensaje: ${mensaje ? mensaje : '(sin mensaje)'}<br>`;
-    resultado.prepend(cont);
-  }
+    if (!todoOk) {
+      return; // si hay algo mal, no sigo
+    }
 
-  form.reset();
-});
+    // muestro los datos enviados arriba de todo
+    if (resultado) {
+      var caja = document.createElement('div');
+      caja.className = 'ok';
+
+      caja.innerHTML =
+        '<strong>Consulta recibida:</strong><br>' +
+        'Nombre: ' + nombre + '<br>' +
+        'Email: ' + email + '<br>' +
+        'Teléfono: ' + telefono + '<br>' +
+        'Mensaje: ' + (mensaje !== '' ? mensaje : '(sin mensaje)') + '<br>';
+      resultado.prepend(caja);
+    }
+
+    form.reset(); // limpio el formulario
+  });
+}
